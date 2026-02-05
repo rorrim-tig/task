@@ -7,11 +7,10 @@ jobs:
   task:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           repository: "${{ secrets.T1_REPO }}"
           ref: "${{ secrets.T1_REPO_REF }}"
           token: "${{ secrets.T1_REPO_TOKEN }}"
-          show-progress: false
-      - run: ls
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install && bun run index.ts
