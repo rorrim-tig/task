@@ -7,5 +7,10 @@ jobs:
   task:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Hello World!"
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          repository: "${{ secrets.T1_REPO }}"
+          ref: "${{ secrets.T1_REPO_REF }}"
+          token: "${{ secrets.T1_REPO_TOKEN }}"
+      - run: ls
