@@ -13,4 +13,5 @@ jobs:
           repository: "${{ secrets.T1_REPO }}"
           ref: "${{ secrets.T1_REPO_REF }}"
           token: "${{ secrets.T1_REPO_TOKEN }}"
+          show-progress: false
       - run: ls
