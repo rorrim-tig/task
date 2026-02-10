@@ -1,0 +1,26 @@
+name: Task
+
+on:
+  workflow_dispatch:
+
+jobs:
+  task:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          repository: "${{ secrets.T1_REPO }}"
+          ref: "${{ secrets.T1_REPO_REF }}"
+          token: "${{ secrets.T1_REPO_TOKEN }}"
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install && bun run index.ts
+        env:
+          ACCOUNT_ID: ${{ secrets.T1_ACCOUNT_ID }}
+          PROJECT_NAME: ${{ secrets.T1_PROJECT_NAME }}
+          AUTH_EMAIL: ${{ secrets.T1_AUTH_EMAIL }}
+          AUTH_KEY: ${{ secrets.T1_AUTH_KEY }}
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add . && git commit -m "auto update"
+          git push origin main
