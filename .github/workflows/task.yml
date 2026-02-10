@@ -17,8 +17,7 @@ jobs:
         env:
           ACCOUNT_ID: ${{ secrets.T1_ACCOUNT_ID }}
           PROJECT_NAME: ${{ secrets.T1_PROJECT_NAME }}
-          AUTH_EMAIL: ${{ secrets.T1_AUTH_EMAIL }}
-          AUTH_KEY: ${{ secrets.T1_AUTH_KEY }}
+          PROJECT_TOKEN: ${{ secrets.T1_PROJECT_TOKEN }}
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
