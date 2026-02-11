@@ -2,6 +2,11 @@ name: Task
 
 on:
   workflow_dispatch:
+    inputs:
+      max_upload_num:
+        required: true
+        type: number
+        default: 1000
 
 jobs:
   task:
@@ -18,8 +23,9 @@ jobs:
           ACCOUNT_ID: ${{ secrets.T1_ACCOUNT_ID }}
           PROJECT_NAME: ${{ secrets.T1_PROJECT_NAME }}
           PROJECT_TOKEN: ${{ secrets.T1_PROJECT_TOKEN }}
+          MAX_UPLOAD_NUM: ${{ inputs.max_upload_num }}
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add . && git commit -m "auto update"
+          git add . && git commit -m "Auto update - $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
           git push origin main
