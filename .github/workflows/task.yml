@@ -7,6 +7,10 @@ on:
         required: true
         type: number
         default: 1000
+      download_concurrency:
+        required: true
+        type: number
+        default: 3
 
 jobs:
   task:
@@ -24,6 +28,7 @@ jobs:
           PROJECT_NAME: ${{ secrets.T1_PROJECT_NAME }}
           PROJECT_TOKEN: ${{ secrets.T1_PROJECT_TOKEN }}
           MAX_UPLOAD_NUM: ${{ inputs.max_upload_num }}
+          DOWNLOAD_CONCURRENCY: ${{ inputs.download_concurrency }}
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
